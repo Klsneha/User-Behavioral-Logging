@@ -1,0 +1,146 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Cascading Style sheets-->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <!--  Main Angular Files-->
+
+    <script src="assets/js/angular.js"></script>
+    <script src="assets/js/angular-route.js"></script>
+    <script src="assets/js/angular-animate.js"></script>
+
+    <!-- Angular Congif/ Routes-->
+
+    <script src="app/app.js"></script>
+    <script src="app/routes.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+
+    <!-- Angular Controllers -->
+    <script src="app/controllers/userCtrl.js"></script>
+    <script src="app/controllers/mainCtrl.js"></script>
+    <script src="app/controllers/events.js"></script>
+    <!--Angular Services -->
+    <script src="app/services/userServices.js"></script>
+    <script src="app/services/authServices.js"></script>
+
+
+    <title>Behavioral Logging</title>
+
+  
+  </head>
+
+  <body ng-app="userApp" ng-controller="mainCtrl as main">
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="#" style="font-size:28px;">Welcome</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto" style="font-size:28px;">
+          <li class="nav-item ">
+            <a class="nav-link" href="#/" style="padding-left: 20px">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li><a class="nav-link" ng-show="main.isLoggedIn" href="#!about" style="padding-left: 20px">About</a></li>
+          <li class="nav-item">
+            <a class="nav-link" ng-show="!main.isLoggedIn" href="#!login" style="padding-left: 20px">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" ng-show="!main.isLoggedIn" href="#!register" style="padding-left: 20px">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" ng-show="main.isLoggedIn" href="#!logout" ng-click="main.logout();" style="padding-left: 20px">Logout</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" ng-show="main.isLoggedIn" href="#!profile" style="padding-left: 20px">{{ main.username }}</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    
+
+    <main role="main" class="container">
+
+      <div class="starter-template">
+        <h1></h1>
+        <p class="lead"></p>
+
+        
+      </div>
+
+    </main><!-- /.container -->
+
+    <div ng-view> </div>
+    
+    <script>
+window.onload = function () {
+  var countMouseMove=localStorage.getItem('countMouseMove');
+var c=localStorage.getItem('countUpVote');
+var z=localStorage.getItem('countDownVote');
+var a=localStorage.getItem('countAddComment');
+var b=localStorage.getItem('countAddAndPost');
+console.log(countMouseMove);
+
+var chart = new CanvasJS.Chart("chartContainer", {
+  exportEnabled: true,
+  animationEnabled: true,
+  title:{
+    text: "User Behavior Interaction Analysis"
+  },
+  legend:{
+    cursor: "pointer",
+    itemclick: explodePie
+  },
+  data: [{
+    type: "pie",
+    showInLegend: true,
+    toolTipContent: "{name}: <strong>{y}</strong>",
+    indexLabel: "{name} - {y}",
+    dataPoints: [
+      { y: countMouseMove, name: "Related Question", exploded: true },
+      { y: c, name: "Up Vote" },
+      { y: z, name: "Down Vote" },
+      { y: a, name: "Add Comments" },
+      { y: b, name: "Ask a Question" },
+      
+    ]
+  }]
+});
+chart.render();
+}
+
+function explodePie (e) {
+  if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+    e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+  } else {
+    e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+  }
+  e.chart.render();
+
+}
+</script>
+
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
+<body>
+  
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+   <script src="assets/js/bootstrap.js"></script>
+
+  </body>
+
+</html>

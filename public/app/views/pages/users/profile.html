@@ -1,0 +1,35 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<div class="page-header">
+<h1 align="center" style="font-family:Times New Roman;color: #000099; font-weight: bold;font-size: 50px">{{main.username}}'s Profile</h1>
+</div>
+<br>
+
+<table cellpadding="10" align="center" class="table table-striped"">
+	<tr>
+		<td><h2 style="font-family:Times New Roman; color: #FF1493; text-align: center; font-weight: bold">UserName:</h2></td>
+		<td><h3 style="font-family:Times New Roman; color:#FF69B4; text-align: center; font-weight: bold">{{ main.username }}</h3></td>
+	</tr>
+	<tr>
+		<th><strong><h2 style="font-family:Times New Roman; color: #FF1493; text-align: center; font-weight: bold">Email:</h2></strong></th>
+		<td><h3 style="font-family:Times New Roman; color:#FF69B4; text-align: center; font-weight: bold">{{ main.useremail}}</h3></td>
+
+	</tr>
+	<tr>
+		<th><strong><h2 style="font-family:Times New Roman; color: #FF1493; text-align: center; font-weight: bold">Password:</h2></strong></th>
+		<td><h3 style="font-family:Times New Roman; color: #FF69B4; text-align: center; font-weight: bold">*******************</h3></td>
+	</tr>
+	
+
+</table>
+<br>
+	<div align="center">
+		<h1 style="font-family:Times New Roman; font-weight: bold; color: #000099">LOG HISTORY</h1>
+	</div>
+	<div ng-repeat="history in main.loginHistory track by $index" align="center" style="font-family:Times New Roman;">
+		<h3>{{history}}</h3>
+
+</div>
